@@ -1,0 +1,201 @@
+1. SQL Query:
+SELECT EmailAddress FROM db.Employees WHERE JobTitle = 'Sales Manager';
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. EmailAddress: wei.zhang@company.com
+
+2. SQL Query:
+SELECT *  FROM db.Employees WHERE Department = 'Product Development';
+
+Output:
+Success: True
+Row Count: 2
+Rows:
+1. EmployeeID: 4, FirstName: Emma, LastName: Smith, Department: Product Development, HireDate: 2020-08-07, EmailAddress: emma.smith@company.com, JobTitle: Product Designer
+2. EmployeeID: 9, FirstName: Michael, LastName: Davis, Department: Product Development, HireDate: 2020-07-28, EmailAddress: michael.davis@company.com, JobTitle: Customer Success Manager
+
+3. SQL Query:
+SELECT TotalSales FROM db.EmployeeWeeklyData JOIN db.Employees ON db.EmployeeWeeklyData.EmployeeID = db.Employees.EmployeeID WHERE db.Employees.FirstName = 'Wei'  AND db.Employees.LastName = 'Zhang' AND WeekStartDate = '2024-08-28';
+
+Output:
+Success: True
+Row Count: 0
+Rows:
+
+4. SQL Query:
+SELECT *  FROM db.Employees WHERE Department = 'Finance';
+
+Output:
+Success: True
+Row Count: 2
+Rows:
+1. EmployeeID: 2, FirstName: Na, LastName: Li, Department: Finance, HireDate: 2023-11-08, EmailAddress: na.li@company.com, JobTitle: Financial Analyst
+2. EmployeeID: 7, FirstName: James, LastName: Johnson, Department: Finance, HireDate: 2022-12-09, EmailAddress: james.johnson@company.com, JobTitle: Marketing Manager
+
+5. SQL Query:
+SELECT SUM(NumberOfMeetings) AS TotalMeetings FROM db.Employees JOIN db.EmployeeWeeklyData ON db.Employees.EmployeeID = db.EmployeeWeeklyData.EmployeeID WHERE db.Employees.FirstName = 'Na' AND db.Employees.LastName = 'Li';
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. TotalMeetings: 51
+
+6. SQL Query:
+SELECT e.EmployeeID, e.FirstName, e.LastName FROM db.Employees e JOIN db.EmployeeWeeklyData ewd ON e.EmployeeID = ewd.EmployeeID WHERE ewd.WeekNumber = 1 AND ewd.HoursWorked > 40;
+
+Output:
+Success: True
+Row Count: 4
+Rows:
+1. EmployeeID: 3, FirstName: Tao, LastName: Huang
+2. EmployeeID: 4, FirstName: Emma, LastName: Smith
+3. EmployeeID: 8, FirstName: Sophia, LastName: Lee
+4. EmployeeID: 10, FirstName: Emily, LastName: Taylor
+
+7. SQL Query:
+SELECT COUNT(*) AS TotalEmployees FROM db.Employees;
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. TotalEmployees: 10
+
+8. SQL Query:
+SELECT AVG(HoursWorked) AS AverageHoursWorked FROM db.EmployeeWeeklyData WHERE WeekNumber = 2;
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. AverageHoursWorked: 42.975000
+
+9. SQL Query:
+SELECT SUM(TotalSales) AS TotalSalesRevenue FROM db.Employees JOIN db.EmployeeWeeklyData ON db.Employees.EmployeeID = db.EmployeeWeeklyData.EmployeeID WHERE db.Employees.Department = 'Sales';
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. TotalSalesRevenue: 92652.21
+
+10. SQL Query:
+SELECT SUM(TotalSales) AS TotalSalesRevenue FROM db.EmployeeWeeklyData WHERE WeekNumber = 1;
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. TotalSalesRevenue: 12873.83
+
+11. SQL Query:
+SELECT e.FirstName, e.LastName FROM db.Employees e JOIN db.EmployeeWeeklyData ewd ON e.EmployeeID = ewd.EmployeeID WHERE ewd.WeekStartDate >= '2024-09-01' AND ewd.WeekStartDate < '2024-09-08' ORDER BY ewd.HoursWorked DESC LIMIT 1;
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. FirstName: Na, LastName: Li
+
+12. SQL Query:
+SELECT e.FirstName, e.LastName FROM db.Employees e JOIN db.EmployeeWeeklyData ewd ON e.EmployeeID = ewd.EmployeeID WHERE ewd.WeekNumber = 2 ORDER BY ewd.NumberOfMeetings DESC LIMIT 1;
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. FirstName: Olivia, LastName: Brown
+
+13. SQL Query:
+SELECT *  FROM db.Employees WHERE HireDate BETWEEN '2008-12-01' AND '2009-06-30';
+
+Output:
+Success: True
+Row Count: 0
+Rows:
+
+14. SQL Query:
+SELECT db.Employees.FirstName, db.Employees.LastName, db.EmployeeWeeklyData.Activities FROM db.Employees JOIN db.EmployeeWeeklyData ON db.Employees.EmployeeID = db.EmployeeWeeklyData.EmployeeID WHERE db.EmployeeWeeklyData.Activities LIKE '%customer retention%'
+
+Output:
+Success: True
+Row Count: 10
+Rows:
+1. FirstName: Wei, LastName: Zhang, Activities: Struggled with customer retention, proposed loyalty program
+2. FirstName: Wei, LastName: Zhang, Activities: Struggled with customer retention, proposed loyalty program
+3. FirstName: Na, LastName: Li, Activities: Struggled with customer retention, proposed loyalty program
+4. FirstName: Na, LastName: Li, Activities: Struggled with customer retention, proposed loyalty program
+5. FirstName: Tao, LastName: Huang, Activities: Struggled with customer retention, proposed loyalty program
+6. FirstName: Tao, LastName: Huang, Activities: Struggled with customer retention, proposed loyalty program
+7. FirstName: Emma, LastName: Smith, Activities: Struggled with customer retention, proposed loyalty program
+8. FirstName: Olivia, LastName: Brown, Activities: Struggled with customer retention, proposed loyalty program
+9. FirstName: Olivia, LastName: Brown, Activities: Struggled with customer retention, proposed loyalty program
+10. FirstName: James, LastName: Johnson, Activities: Struggled with customer retention, proposed loyalty program
+
+15. SQL Query:
+SELECT *  FROM db.Employees WHERE JobTitle LIKE '%data analyst%' OR JobTitle LIKE '%reporting%'
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. EmployeeID: 8, FirstName: Sophia, LastName: Lee, Department: IT, HireDate: 2021-03-28, EmailAddress: sophia.lee@company.com, JobTitle: Data Analyst
+
+16. SQL Query:
+SELECT *  FROM db.Employees WHERE Department = 'IT';
+
+Output:
+Success: True
+Row Count: 2
+Rows:
+1. EmployeeID: 3, FirstName: Tao, LastName: Huang, Department: IT, HireDate: 2020-05-23, EmailAddress: tao.huang@company.com, JobTitle: IT Specialist
+2. EmployeeID: 8, FirstName: Sophia, LastName: Lee, Department: IT, HireDate: 2021-03-28, EmailAddress: sophia.lee@company.com, JobTitle: Data Analyst
+
+17. SQL Query:
+SELECT db.EmployeeWeeklyData.HoursWorked FROM db.Employees JOIN db.EmployeeWeeklyData ON db.Employees.EmployeeID = db.EmployeeWeeklyData.EmployeeID WHERE db.Employees.FirstName = 'Wei' AND db.Employees.LastName = 'Zhang'    OR db.Employees.FirstName = 'Tao' AND db.Employees.LastName = 'Huang'    AND db.EmployeeWeeklyData.WeekNumber = 1;
+
+Output:
+Success: True
+Row Count: 11
+Rows:
+1. HoursWorked: 38.80
+2. HoursWorked: 46.50
+3. HoursWorked: 39.69
+4. HoursWorked: 44.07
+5. HoursWorked: 39.23
+6. HoursWorked: 41.57
+7. HoursWorked: 49.92
+8. HoursWorked: 48.49
+9. HoursWorked: 43.11
+10. HoursWorked: 42.41
+11. HoursWorked: 49.63
+
+18. SQL Query:
+SELECT e.FirstName, e.LastName, SUM(ew.HoursWorked) AS TotalHoursWorked FROM db.Employees e JOIN db.EmployeeWeeklyData ew ON e.EmployeeID = ew.EmployeeID WHERE ew.WeekStartDate >= DATE_SUB(CURDATE(), INTERVAL 4 WEEK) GROUP BY e.EmployeeID ORDER BY TotalHoursWorked DESC LIMIT 3;
+
+Output:
+Success: True
+Row Count: 0
+Rows:
+
+19. SQL Query:
+SELECT e.FirstName, e.LastName, ew.WeekStartDate, ew.TotalSales FROM db.Employees AS e JOIN db.EmployeeWeeklyData AS ew ON e.EmployeeID = ew.EmployeeID WHERE ew.TotalSales = (SELECT MAX(TotalSales) FROM db.EmployeeWeeklyData)
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. FirstName: Olivia, LastName: Brown, WeekStartDate: 2024-08-26, TotalSales: 9732.14
+
+20. SQL Query:
+SELECT SUM(EWD.HoursWorked) AS TotalHoursWorked, AVG(EWD.TotalSales) AS AverageSalesRevenue FROM db.Employees E JOIN db.EmployeeWeeklyData EWD ON E.EmployeeID = EWD.EmployeeID WHERE E.Department = 'Business Development';
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. TotalHoursWorked: 862.92, AverageSalesRevenue: 0.000000

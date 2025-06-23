@@ -1,0 +1,246 @@
+1. SQL Query:
+SELECT employee_db.Employees.EmailAddress
+FROM employee_db.Employees
+WHERE employee_db.Employees.JobTitle = 'Product Manager';
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. EmailAddress: rachel.gardner@company.com
+
+2. SQL Query:
+SELECT * 
+FROM employee_db.Employees 
+WHERE Department = 'Product Development';
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. EmployeeID: 3, FirstName: Rachel, LastName: Gardner, Department: Product Development, HireDate: 2024-05-20, EmailAddress: rachel.gardner@company.com, JobTitle: Product Manager
+
+3. SQL Query:
+SELECT TotalSales
+FROM employee_db.Employees e
+JOIN employee_db.EmployeeWeeklyData ewd ON e.EmployeeID = ewd.EmployeeID
+WHERE e.FirstName = 'Todd' AND e.LastName = 'Garcia'
+AND ewd.WeekStartDate = '2024-08-30';
+
+Output:
+Success: True
+Row Count: 0
+Rows:
+
+4. SQL Query:
+SELECT * 
+FROM employee_db.Employees 
+WHERE Department = 'Finance'
+
+Output:
+Success: True
+Row Count: 2
+Rows:
+1. EmployeeID: 4, FirstName: Pamela, LastName: Cook, Department: Finance, HireDate: 2024-03-09, EmailAddress: pamela.cook@company.com, JobTitle: Accountant
+2. EmployeeID: 9, FirstName: Richard, LastName: Garcia, Department: Finance, HireDate: 2023-11-15, EmailAddress: richard.garcia@company.com, JobTitle: Financial Analyst
+
+5. SQL Query:
+SELECT SUM(NumberOfMeetings) 
+FROM employee_db.Employees e
+JOIN employee_db.EmployeeWeeklyData ewd ON e.EmployeeID = ewd.EmployeeID
+WHERE e.FirstName = 'Na' AND e.LastName = 'Li';
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. SUM(NumberOfMeetings): None
+
+6. SQL Query:
+SELECT * 
+FROM employee_db.Employees e
+JOIN employee_db.EmployeeWeeklyData ewd ON e.EmployeeID = ewd.EmployeeID
+WHERE ewd.WeekNumber = 1 AND ewd.HoursWorked > 40;
+
+Output:
+Success: True
+Row Count: 3
+Rows:
+1. EmployeeID: 3, FirstName: Rachel, LastName: Gardner, Department: Product Development, HireDate: 2024-05-20, EmailAddress: rachel.gardner@company.com, JobTitle: Product Manager, WeekNumber: 1, WeekStartDate: 2024-08-05, NumberOfMeetings: 0, TotalSales: 1429.19, HoursWorked: 44.20, Activities: Faced issue with Progressive impactful infrastructure, resolved using whiteboard 24/365 web services.. Developed strategy to improve military.. Reviewed performance metrics and suggested streamline B2B technologies.
+2. EmployeeID: 8, FirstName: Joanne, LastName: Allen, Department: IT, HireDate: 2022-08-24, EmailAddress: joanne.allen@company.com, JobTitle: Data Analyst, WeekNumber: 1, WeekStartDate: 2024-08-05, NumberOfMeetings: 0, TotalSales: 1559.32, HoursWorked: 46.38, Activities: Reviewed performance metrics and suggested extend compelling portals.. Developed strategy to improve once.. Developed strategy to improve opportunity.
+3. EmployeeID: 9, FirstName: Richard, LastName: Garcia, Department: Finance, HireDate: 2023-11-15, EmailAddress: richard.garcia@company.com, JobTitle: Financial Analyst, WeekNumber: 1, WeekStartDate: 2024-08-05, NumberOfMeetings: 6, TotalSales: 4138.30, HoursWorked: 42.03, Activities: Collaborated with Finance on streamline world-class bandwidth.. Developed strategy to improve one.. Developed strategy to improve skill.
+
+7. SQL Query:
+SELECT COUNT(*) 
+FROM employee_db.Employees;
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. COUNT(*): 10
+
+8. SQL Query:
+SELECT AVG(HoursWorked) 
+FROM employee_db.EmployeeWeeklyData 
+WHERE WeekNumber = 2;
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. AVG(HoursWorked): 37.129000
+
+9. SQL Query:
+SELECT SUM(TotalSales) 
+FROM employee_db.Employees 
+JOIN employee_db.EmployeeWeeklyData 
+ON Employees.EmployeeID = EmployeeWeeklyData.EmployeeID 
+WHERE Department = 'Marketing';
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. SUM(TotalSales): 83247.13
+
+10. SQL Query:
+SELECT SUM(TotalSales) 
+FROM employee_db.EmployeeWeeklyData 
+WHERE WeekNumber = 1;
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. SUM(TotalSales): 22065.77
+
+11. SQL Query:
+SELECT EmployeeID, FirstName, LastName
+FROM employee_db.Employees
+JOIN employee_db.EmployeeWeeklyData ON Employees.EmployeeID = EmployeeWeeklyData.EmployeeID
+WHERE WeekStartDate BETWEEN '2024-09-01' AND '2024-09-07'
+ORDER BY HoursWorked DESC
+LIMIT 1;
+
+Output:
+Success: False
+Message: Query is invalid or uses unauthorized tables.
+
+12. SQL Query:
+SELECT EmployeeID
+FROM employee_db.EmployeeWeeklyData
+WHERE WeekNumber = 2
+ORDER BY NumberOfMeetings DESC
+LIMIT 1;
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. EmployeeID: 1
+
+13. SQL Query:
+SELECT * 
+FROM employee_db.Employees 
+WHERE HireDate BETWEEN '2008-12-01' AND '2009-06-30';
+
+Output:
+Success: True
+Row Count: 0
+Rows:
+
+14. SQL Query:
+SELECT e.FirstName, e.LastName, e.Department, e.JobTitle, ew.Activities
+FROM employee_db.Employees e
+JOIN employee_db.EmployeeWeeklyData ew ON e.EmployeeID = ew.EmployeeID
+WHERE ew.Activities LIKE '%customer retention%'
+
+Output:
+Success: True
+Row Count: 0
+Rows:
+
+15. SQL Query:
+SELECT EmployeeID, FirstName, LastName, Department, HireDate, EmailAddress, JobTitle
+FROM employee_db.Employees
+WHERE JobTitle LIKE '%data analyst%' OR JobTitle LIKE '%reporting%'
+
+Output:
+Success: True
+Row Count: 3
+Rows:
+1. EmployeeID: 2, FirstName: Charles, LastName: Buckley, Department: IT, HireDate: 2024-05-26, EmailAddress: charles.buckley@company.com, JobTitle: Data Analyst
+2. EmployeeID: 5, FirstName: Amy, LastName: Hill, Department: IT, HireDate: 2021-11-26, EmailAddress: amy.hill@company.com, JobTitle: Data Analyst
+3. EmployeeID: 8, FirstName: Joanne, LastName: Allen, Department: IT, HireDate: 2022-08-24, EmailAddress: joanne.allen@company.com, JobTitle: Data Analyst
+
+16. SQL Query:
+SELECT * 
+FROM employee_db.Employees 
+WHERE Department = 'IT';
+
+Output:
+Success: True
+Row Count: 4
+Rows:
+1. EmployeeID: 2, FirstName: Charles, LastName: Buckley, Department: IT, HireDate: 2024-05-26, EmailAddress: charles.buckley@company.com, JobTitle: Data Analyst
+2. EmployeeID: 5, FirstName: Amy, LastName: Hill, Department: IT, HireDate: 2021-11-26, EmailAddress: amy.hill@company.com, JobTitle: Data Analyst
+3. EmployeeID: 8, FirstName: Joanne, LastName: Allen, Department: IT, HireDate: 2022-08-24, EmailAddress: joanne.allen@company.com, JobTitle: Data Analyst
+4. EmployeeID: 10, FirstName: Isabel, LastName: Page, Department: IT, HireDate: 2024-02-11, EmailAddress: isabel.page@company.com, JobTitle: System Administrator
+
+17. SQL Query:
+SELECT e1.HoursWorked AS Amy_Hill_Hours_Worked, e2.HoursWorked AS Joanne_Allen_Hours_Worked
+FROM employee_db.Employees e1
+JOIN employee_db.EmployeeWeeklyData ewd1 ON e1.EmployeeID = ewd1.EmployeeID
+JOIN employee_db.Employees e2 ON e2.FirstName = 'Joanne' AND e2.LastName = 'Allen'
+JOIN employee_db.EmployeeWeeklyData ewd2 ON e2.EmployeeID = ewd2.EmployeeID
+WHERE e1.FirstName = 'Amy' AND e1.LastName = 'Hill'
+AND ewd1.WeekNumber = 1
+AND ewd2.WeekNumber = 1;
+
+Output:
+Success: False
+Message: Query is invalid or uses unauthorized tables.
+
+18. SQL Query:
+SELECT EmployeeID, SUM(HoursWorked) AS TotalHoursWorked
+FROM employee_db.EmployeeWeeklyData
+WHERE WeekStartDate BETWEEN DATE_SUB('2024-10-07', INTERVAL 4 WEEK) AND '2024-10-07'
+GROUP BY EmployeeID
+ORDER BY TotalHoursWorked DESC
+LIMIT 3;
+
+Output:
+Success: True
+Row Count: 3
+Rows:
+1. EmployeeID: 2, TotalHoursWorked: 229.39
+2. EmployeeID: 10, TotalHoursWorked: 211.88
+3. EmployeeID: 7, TotalHoursWorked: 207.95
+
+19. SQL Query:
+SELECT EmployeeID, WeekStartDate, TotalSales
+FROM employee_db.EmployeeWeeklyData
+WHERE TotalSales = (
+    SELECT MAX(TotalSales)
+    FROM employee_db.EmployeeWeeklyData
+)
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. EmployeeID: 9, WeekStartDate: 2024-09-23, TotalSales: 4970.31
+
+20. SQL Query:
+SELECT SUM(HoursWorked) AS TotalHoursWorked, AVG(TotalSales) AS AverageSalesRevenue
+FROM employee_db.Employees e
+JOIN employee_db.EmployeeWeeklyData ewd ON e.EmployeeID = ewd.EmployeeID
+WHERE e.Department = 'Marketing'
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. TotalHoursWorked: 1155.79, AverageSalesRevenue: 2774.904333
+

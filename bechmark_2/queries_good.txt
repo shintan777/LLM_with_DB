@@ -1,0 +1,188 @@
+1. SQL Query:
+SELECT employee_db.Employees.EmailAddress FROM employee_db.Employees WHERE employee_db.Employees.JobTitle = 'Product Manager';
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. EmailAddress: rachel.gardner@company.com
+
+2. SQL Query:
+SELECT *  FROM employee_db.Employees WHERE Department = 'Product Development';
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. EmployeeID: 3, FirstName: Rachel, LastName: Gardner, Department: Product Development, HireDate: 2024-05-20, EmailAddress: rachel.gardner@company.com, JobTitle: Product Manager
+
+3. SQL Query:
+SELECT TotalSales FROM employee_db.Employees e JOIN employee_db.EmployeeWeeklyData ewd ON e.EmployeeID = ewd.EmployeeID WHERE e.FirstName = 'Todd' AND e.LastName = 'Garcia' AND ewd.WeekStartDate = '2024-08-30';
+
+Output:
+Success: True
+Row Count: 0
+Rows:
+
+4. SQL Query:
+SELECT *  FROM employee_db.Employees WHERE Department = 'Finance';
+
+Output:
+Success: True
+Row Count: 2
+Rows:
+1. EmployeeID: 4, FirstName: Pamela, LastName: Cook, Department: Finance, HireDate: 2024-03-09, EmailAddress: pamela.cook@company.com, JobTitle: Accountant
+2. EmployeeID: 9, FirstName: Richard, LastName: Garcia, Department: Finance, HireDate: 2023-11-15, EmailAddress: richard.garcia@company.com, JobTitle: Financial Analyst
+
+5. SQL Query:
+SELECT SUM(NumberOfMeetings) AS TotalMeetings FROM employee_db.Employees AS e JOIN employee_db.EmployeeWeeklyData AS ewd ON e.EmployeeID = ewd.EmployeeID WHERE e.FirstName = 'Na' AND e.LastName = 'Li';
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. TotalMeetings: None
+
+6. SQL Query:
+SELECT e.EmployeeID, e.FirstName, e.LastName FROM employee_db.Employees e JOIN employee_db.EmployeeWeeklyData ewd ON e.EmployeeID = ewd.EmployeeID WHERE ewd.WeekNumber = 1 AND ewd.HoursWorked > 40;
+
+Output:
+Success: True
+Row Count: 3
+Rows:
+1. EmployeeID: 3, FirstName: Rachel, LastName: Gardner
+2. EmployeeID: 8, FirstName: Joanne, LastName: Allen
+3. EmployeeID: 9, FirstName: Richard, LastName: Garcia
+
+7. SQL Query:
+SELECT COUNT(EmployeeID) AS TotalEmployees FROM employee_db.Employees;
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. TotalEmployees: 10
+
+8. SQL Query:
+SELECT AVG(HoursWorked) AS AverageHoursWorked FROM employee_db.EmployeeWeeklyData WHERE WeekNumber = 2;
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. AverageHoursWorked: 37.129000
+
+9. SQL Query:
+SELECT SUM(TotalSales) AS TotalSalesRevenue FROM employee_db.Employees e JOIN employee_db.EmployeeWeeklyData ewd ON e.EmployeeID = ewd.EmployeeID WHERE e.Department = 'Marketing';
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. TotalSalesRevenue: 83247.13
+
+10. SQL Query:
+SELECT SUM(TotalSales) AS TotalSalesRevenue FROM employee_db.EmployeeWeeklyData WHERE WeekNumber = 1;
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. TotalSalesRevenue: 22065.77
+
+11. SQL Query:
+SELECT e.FirstName, e.LastName, e.Department, e.HireDate, e.EmailAddress, e.JobTitle, ewd.HoursWorked FROM employee_db.Employees e JOIN employee_db.EmployeeWeeklyData ewd ON e.EmployeeID = ewd.EmployeeID WHERE ewd.WeekStartDate BETWEEN '2024-09-01' AND '2024-09-07' ORDER BY ewd.HoursWorked DESC LIMIT 1;
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. FirstName: Patrick, LastName: Perez, Department: Marketing, HireDate: 2023-05-05, EmailAddress: patrick.perez@company.com, JobTitle: Marketing Specialist, HoursWorked: 48.13
+
+12. SQL Query:
+SELECT e.FirstName, e.LastName FROM employee_db.Employees e JOIN employee_db.EmployeeWeeklyData ewd ON e.EmployeeID = ewd.EmployeeID WHERE ewd.WeekNumber = 2 ORDER BY ewd.NumberOfMeetings DESC LIMIT 1;
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. FirstName: Patrick, LastName: Perez
+
+13. SQL Query:
+SELECT *  FROM employee_db.Employees WHERE HireDate BETWEEN '2008-12-01' AND '2009-06-30';
+
+Output:
+Success: True
+Row Count: 0
+Rows:
+
+14. SQL Query:
+SELECT e.FirstName, e.LastName, e.Department, e.JobTitle, ew.Activities FROM employee_db.Employees e JOIN employee_db.EmployeeWeeklyData ew ON e.EmployeeID = ew.EmployeeID WHERE ew.Activities LIKE '%faced challenges%' AND ew.Activities LIKE '%proposed solutions%'
+
+Output:
+Success: True
+Row Count: 0
+Rows:
+
+15. SQL Query:
+SELECT EmployeeID, FirstName, LastName, Department, HireDate, EmailAddress, JobTitle FROM employee_db.Employees WHERE JobTitle LIKE '%data analyst%' OR JobTitle LIKE '%reporting%'
+
+Output:
+Success: True
+Row Count: 3
+Rows:
+1. EmployeeID: 2, FirstName: Charles, LastName: Buckley, Department: IT, HireDate: 2024-05-26, EmailAddress: charles.buckley@company.com, JobTitle: Data Analyst
+2. EmployeeID: 5, FirstName: Amy, LastName: Hill, Department: IT, HireDate: 2021-11-26, EmailAddress: amy.hill@company.com, JobTitle: Data Analyst
+3. EmployeeID: 8, FirstName: Joanne, LastName: Allen, Department: IT, HireDate: 2022-08-24, EmailAddress: joanne.allen@company.com, JobTitle: Data Analyst
+
+16. SQL Query:
+SELECT *  FROM employee_db.Employees WHERE Department = 'IT';
+
+Output:
+Success: True
+Row Count: 4
+Rows:
+1. EmployeeID: 2, FirstName: Charles, LastName: Buckley, Department: IT, HireDate: 2024-05-26, EmailAddress: charles.buckley@company.com, JobTitle: Data Analyst
+2. EmployeeID: 5, FirstName: Amy, LastName: Hill, Department: IT, HireDate: 2021-11-26, EmailAddress: amy.hill@company.com, JobTitle: Data Analyst
+3. EmployeeID: 8, FirstName: Joanne, LastName: Allen, Department: IT, HireDate: 2022-08-24, EmailAddress: joanne.allen@company.com, JobTitle: Data Analyst
+4. EmployeeID: 10, FirstName: Isabel, LastName: Page, Department: IT, HireDate: 2024-02-11, EmailAddress: isabel.page@company.com, JobTitle: System Administrator
+
+17. SQL Query:
+SELECT e.FirstName, e.LastName, ewd.HoursWorked FROM employee_db.Employees e JOIN employee_db.EmployeeWeeklyData ewd ON e.EmployeeID = ewd.EmployeeID WHERE e.FirstName = 'Amy' AND e.LastName = 'Hill' AND ewd.WeekNumber = 1  UNION  SELECT e.FirstName, e.LastName, ewd.HoursWorked FROM employee_db.Employees e JOIN employee_db.EmployeeWeeklyData ewd ON e.EmployeeID = ewd.EmployeeID WHERE e.FirstName = 'Joanne' AND e.LastName = 'Allen' AND ewd.WeekNumber = 1;
+
+Output:
+Success: True
+Row Count: 2
+Rows:
+1. FirstName: Amy, LastName: Hill, HoursWorked: 39.76
+2. FirstName: Joanne, LastName: Allen, HoursWorked: 46.38
+
+18. SQL Query:
+SELECT e.FirstName, e.LastName, SUM(ew.HoursWorked) AS TotalHoursWorked FROM employee_db.Employees e JOIN employee_db.EmployeeWeeklyData ew ON e.EmployeeID = ew.EmployeeID WHERE ew.WeekStartDate BETWEEN DATE_SUB('2024-10-07', INTERVAL 4 WEEK) AND '2024-10-07' GROUP BY e.EmployeeID ORDER BY TotalHoursWorked DESC LIMIT 3;
+
+Output:
+Success: True
+Row Count: 3
+Rows:
+1. FirstName: Charles, LastName: Buckley, TotalHoursWorked: 229.39
+2. FirstName: Isabel, LastName: Page, TotalHoursWorked: 211.88
+3. FirstName: Bruce, LastName: Cruz, TotalHoursWorked: 207.95
+
+19. SQL Query:
+SELECT e.FirstName, e.LastName, ew.WeekStartDate, ew.TotalSales FROM employee_db.Employees e JOIN employee_db.EmployeeWeeklyData ew ON e.EmployeeID = ew.EmployeeID WHERE ew.TotalSales = (SELECT MAX(TotalSales) FROM employee_db.EmployeeWeeklyData)
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. FirstName: Richard, LastName: Garcia, WeekStartDate: 2024-09-23, TotalSales: 4970.31
+
+20. SQL Query:
+SELECT SUM(EWD.HoursWorked) AS TotalHoursWorked, AVG(EWD.TotalSales) AS AverageSalesRevenue FROM employee_db.Employees E JOIN employee_db.EmployeeWeeklyData EWD ON E.EmployeeID = EWD.EmployeeID WHERE E.Department = 'Marketing';
+
+Output:
+Success: True
+Row Count: 1
+Rows:
+1. TotalHoursWorked: 1155.79, AverageSalesRevenue: 2774.904333
+
